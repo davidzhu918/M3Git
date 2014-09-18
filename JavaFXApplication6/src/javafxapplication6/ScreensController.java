@@ -65,13 +65,14 @@ public class ScreensController extends StackPane {
     }
     
     public boolean setScreen(final String name) {
+        //System.out.println(toString(getScreen))
         if (screens.get(name) != null) {
             DoubleProperty opacity = opacityProperty();
-            if (!getChildren().isEmpty()) {
+            if (!getChildren().isEmpty()) { //
                 Timeline fade;
                 fade = new Timeline(
                         new KeyFrame(Duration.ZERO, new KeyValue(opacity, 1.0)),
-                        new KeyFrame(new Duration(1000), new EventHandler<ActionEvent>() {
+                        new KeyFrame(new Duration(100), new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent t) {
                                 getChildren().remove(0);
@@ -79,7 +80,7 @@ public class ScreensController extends StackPane {
                                 Timeline fadeIn;
                                 fadeIn = new Timeline(
                                         new KeyFrame(Duration.ZERO, new KeyValue(opacity, 0.0)),
-                                        new KeyFrame(new Duration(800), new KeyValue(opacity, 1.0)));
+                                        new KeyFrame(new Duration(80), new KeyValue(opacity, 1.0)));
                                 fadeIn.play();
                             }
                         }, new KeyValue(opacity, 0.0)));
@@ -89,11 +90,12 @@ public class ScreensController extends StackPane {
                 getChildren().add(screens.get(name));
                 Timeline fadeIn = new Timeline(
                         new KeyFrame(Duration.ZERO, new KeyValue(opacity, 0.0)),
-                        new KeyFrame(new Duration(2500), new KeyValue(opacity, 1.0)));
+                        new KeyFrame(new Duration(120), new KeyValue(opacity, 1.0)));
                 fadeIn.play();
             }
             return true;
         } else {
+            System.out.println(name);
             System.out.println("Screen hasn't been laoded!\n");
             return false;
         }

@@ -30,6 +30,11 @@ public class JavaFXApplication6 extends Application {
         ScreensController mainContainer = new ScreensController();
         mainContainer.loadScreen(JavaFXApplication6.screen1ID, JavaFXApplication6.screen1File);
         mainContainer.loadScreen(JavaFXApplication6.screen2ID, JavaFXApplication6.screen2File);
+        if (mainContainer.getScreen("configure") == null) {
+            System.out.println("error");
+        } else {
+            System.out.println("ok");
+        }
         
         mainContainer.setScreen(JavaFXApplication6.screen1ID);
         Group root = new Group();
